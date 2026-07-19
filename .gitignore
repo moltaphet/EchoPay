@@ -1,30 +1,40 @@
-# Foundry
-cache/
-out/
-broadcast/
-lib/
+# =============================================================================
+# EchoPay — repository gitignore
+# =============================================================================
 
-# Env
+# Foundry artifacts (repo-root only)
+/cache/
+/out/
+/broadcast/
+
+# Foundry dependency folder at REPO ROOT only.
+# IMPORTANT: pattern MUST be anchored with a leading slash.
+# An unanchored `lib/` rule also matches frontend/src/lib/ and will
+# silently omit the Next.js path-alias modules from git (Vercel then
+# fails with "Module not found: Can't resolve '@/lib/...'").
+/lib/
+
+# Environment secrets
 .env
 .env.local
-.env*.local
+.env.*.local
 
-# Node
-node_modules/
-frontend/node_modules/
-frontend/.next/
-frontend/out/
-frontend/dist/
-frontend/.vercel
-frontend/tsconfig.tsbuildinfo
-
-# OS / IDE
-.DS_Store
+# IDE / OS
 .idea/
 .vscode/
 *.swp
 *.swo
+.DS_Store
+Thumbs.db
 
-# Coverage
+# Coverage / gas
 lcov.info
+gas-report.txt
 coverage/
+
+# Node dependencies and build outputs (anywhere)
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
