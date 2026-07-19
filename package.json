@@ -1,0 +1,16 @@
+{
+  "name": "echopay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EchoPay — advanced Arc USDC invoices: partials, splits, recurring, disputes, analytics",
+  "scripts": {
+    "build:contracts": "forge build",
+    "test:contracts": "forge test -vv",
+    "deploy:arc": "forge script script/Deploy.s.sol:DeployEchoPay --rpc-url $ARC_RPC_URL --broadcast --private-key $PRIVATE_KEY",
+    "dev": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "lint": "npm run lint --prefix frontend"
+  },
+  "keywords": ["arc", "usdc", "invoice", "web3", "solidity"],
+  "license": "MIT"
+}

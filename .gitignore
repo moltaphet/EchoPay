@@ -1,0 +1,30 @@
+# Foundry
+cache/
+out/
+broadcast/
+lib/
+
+# Env
+.env
+.env.local
+.env*.local
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+frontend/.vercel
+frontend/tsconfig.tsbuildinfo
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Coverage
+lcov.info
+coverage/

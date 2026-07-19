@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/*
+  EchoPay design system
+  ---------------------
+  void #020617 · deep #0B1426 · surface #111C33
+  cyan #22D3EE · blue #38BDF8 · indigo #6366F1
+  Signature: concentric echo rings + glass cards
+*/
+
+@layer base {
+  :root {
+    --echo-void: #020617;
+    --echo-deep: #0b1426;
+    --echo-cyan: #22d3ee;
+    --echo-blue: #38bdf8;
+
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+    --card: 217 45% 9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 45% 9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 189 94% 53%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 217 33% 14%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 30% 14%;
+    --muted-foreground: 215 16% 62%;
+    --accent: 217 33% 16%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 25% 18%;
+    --input: 217 25% 18%;
+    --ring: 189 94% 53%;
+    --radius: 0.9rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-echo-void text-foreground;
+    font-feature-settings: "ss01" on, "cv11" on;
+    letter-spacing: -0.011em;
+    background-image:
+      radial-gradient(ellipse 90% 55% at 50% -25%, rgba(34, 211, 238, 0.12), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 100% 10%, rgba(99, 102, 241, 0.1), transparent 50%),
+      radial-gradient(ellipse 45% 35% at 0% 90%, rgba(56, 189, 248, 0.07), transparent 45%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    letter-spacing: -0.025em;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.28);
+    color: white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] shadow-card backdrop-blur-xl;
+  }
+
+  .echo-ring {
+    @apply pointer-events-none absolute rounded-full border border-echo-cyan/25;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-echo-cyan via-echo-blue to-echo-indigo bg-clip-text text-transparent;
+  }
+
+  .shimmer-border {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(34, 211, 238, 0.35),
+      transparent
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Hero title — soft neon glow for Web3 showcase */
+  .hero-glow-title {
+    color: #f8fafc;
+    text-shadow:
+      0 0 24px rgba(34, 211, 238, 0.22),
+      0 0 56px rgba(56, 189, 248, 0.12),
+      0 4px 32px rgba(0, 0, 0, 0.7);
+  }
+
+  .hero-glow-accent {
+    background: linear-gradient(115deg, #67e8f9 0%, #22d3ee 35%, #38bdf8 65%, #818cf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.5))
+      drop-shadow(0 0 48px rgba(56, 189, 248, 0.28));
+  }
+
+  .hero-hint {
+    text-shadow:
+      0 0 12px rgba(34, 211, 238, 0.65),
+      0 0 28px rgba(34, 211, 238, 0.35);
+    animation: hero-hint-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes hero-hint-pulse {
+    0%,
+    100% {
+      opacity: 0.75;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* —— Landing atmosphere —— */
+  .hero-frame-aura {
+    pointer-events: none;
+    position: absolute;
+    inset: 12% 18%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(34, 211, 238, 0.16) 0%,
+      rgba(56, 189, 248, 0.08) 35%,
+      transparent 70%
+    );
+    filter: blur(8px);
+    animation: aura-breathe 6s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes aura-breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.96);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  .float-orb {
+    pointer-events: none;
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(40px);
+    opacity: 0.45;
+    animation: orb-drift 14s ease-in-out infinite;
+  }
+
+  .float-orb-a {
+    width: 280px;
+    height: 280px;
+    background: rgba(34, 211, 238, 0.18);
+    top: 12%;
+    left: 8%;
+    animation-delay: 0s;
+  }
+
+  .float-orb-b {
+    width: 320px;
+    height: 320px;
+    background: rgba(99, 102, 241, 0.14);
+    bottom: 18%;
+    right: 6%;
+    animation-delay: -4s;
+    animation-duration: 18s;
+  }
+
+  .float-orb-c {
+    width: 180px;
+    height: 180px;
+    background: rgba(56, 189, 248, 0.12);
+    top: 40%;
+    right: 22%;
+    animation-delay: -7s;
+    animation-duration: 12s;
+  }
+
+  @keyframes orb-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(18px, -22px, 0) scale(1.06);
+    }
+    66% {
+      transform: translate3d(-14px, 12px, 0) scale(0.96);
+    }
+  }
+
+  .btn-glow-primary {
+    transition:
+      box-shadow 0.35s ease,
+      filter 0.35s ease,
+      transform 0.2s ease;
+  }
+
+  .btn-glow-secondary {
+    transition:
+      box-shadow 0.35s ease,
+      border-color 0.35s ease,
+      background 0.35s ease;
+  }
+
+  .card-alive {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      box-shadow 0.45s ease,
+      background 0.35s ease;
+  }
+
+  .card-alive:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34, 211, 238, 0.32);
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.1),
+      0 20px 48px -22px rgba(34, 211, 238, 0.28),
+      0 16px 40px -18px rgba(0, 0, 0, 0.55);
+  }
+
+  .icon-glow {
+    box-shadow: 0 0 22px -6px rgba(34, 211, 238, 0.4);
+    transition:
+      box-shadow 0.35s ease,
+      background 0.35s ease;
+  }
+
+  .card-alive:hover .icon-glow {
+    box-shadow: 0 0 32px -4px rgba(34, 211, 238, 0.65);
+  }
+
+  .premium-panel {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(2, 6, 23, 0.4) 100%
+      );
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.04),
+      0 24px 64px -28px rgba(0, 0, 0, 0.65),
+      0 0 80px -40px rgba(34, 211, 238, 0.2);
+    backdrop-filter: blur(16px);
+  }
+
+  .step-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(34, 211, 238, 0.06),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .step-card:hover::before {
+    opacity: 1;
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .section-glow-line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(34, 211, 238, 0.35),
+      transparent
+    );
+    opacity: 0.7;
+  }
+
+  .badge-alive {
+    animation: badge-soft 4s ease-in-out infinite;
+  }
+
+  @keyframes badge-soft {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+    }
+    50% {
+      box-shadow: 0 0 20px -4px rgba(34, 211, 238, 0.35);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
